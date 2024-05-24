@@ -1,10 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class TiroPlayer : MonoBehaviour
 {
+    
+
+
     [Header("componentes")]
     public Rigidbody2D corpoTiro;
     public BoxCollider2D colisorTiro;
@@ -14,10 +19,22 @@ public class TiroPlayer : MonoBehaviour
     [Header("Movimentação")]
     public float velovidade;
 
+    [Header("Colisao")]
+    public Animator explosao;
+    //  public bool isCollision;
+
+    private void Awake()
+    {
+    //    oAnimator = GetComponent<Animator>();
+    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+   //     explosao.SetActive(false);
+   //     colisorTiro =  GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -47,10 +64,26 @@ public class TiroPlayer : MonoBehaviour
         if (collision.gameObject.CompareTag("Alan"))
 
         {
+           
+
             Destroy(collision.gameObject);
             Destroy(gameObject);
+
+         //   StartCoroutine(Explodir());
+
         }
     }
 
+  //  IEnumerator Explodir()
+ //   {
+  //      Instantiate(explosao,       , Quaternion.identity);
+  //      {
+   //         throw new NotImplementedException();
 
-}
+    //    }
+
+        
+    }
+
+   
+

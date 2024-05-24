@@ -124,6 +124,7 @@ MonoBehaviour:
   corpoTiro: {fileID: 1666174635216568552}
   colisorTiro: {fileID: 8796290088929899644}
   velovidade: 20
+  explosao: {fileID: 2442170048787829488, guid: 2c97354d9a746db43b589dd22d5c0816, type: 3}
 --- !u!50 &1666174635216568552
 Rigidbody2D:
   serializedVersion: 4
