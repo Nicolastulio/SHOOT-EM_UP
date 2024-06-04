@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Alan : MonoBehaviour
@@ -30,5 +31,5 @@ public class Alan : MonoBehaviour
         corpoAlan.velocity = new Vector2(0, velovidade);
     }
 
-   
+    
 }

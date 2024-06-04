@@ -7,12 +7,15 @@ using UnityEngine;
 
 public class TiroPlayer : MonoBehaviour
 {
+
     
 
+    
 
     [Header("componentes")]
     public Rigidbody2D corpoTiro;
     public BoxCollider2D colisorTiro;
+    public Animator animatorAlan;
 
     [Header("tiro/botão")]
 
@@ -64,12 +67,15 @@ public class TiroPlayer : MonoBehaviour
         if (collision.gameObject.CompareTag("Alan"))
 
         {
-            GameManager.Instance.AlterarScore(10);   
+            GameManager.Instance.AlterarScore(10);
+
+            animatorAlan.SetInteger("explosao", 1);
+
 
             Destroy(collision.gameObject);
             Destroy(gameObject);
-
-         //   StartCoroutine(Explodir());
+         
+            //   StartCoroutine(Explodir());
 
         }
     }
