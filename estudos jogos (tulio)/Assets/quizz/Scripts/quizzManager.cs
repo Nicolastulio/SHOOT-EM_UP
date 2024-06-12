@@ -4,11 +4,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class quizzManager : MonoBehaviour
+public class QuizzManager : MonoBehaviour
 {
+    [Header("Variaveis de Painel")]
+    public GameObject painelInicio;
+    public GameObject painelJogo;
 
-    public int N = 1;
-    //[Header("")]
+    [Header("Objetos do Jogo")]
+    public TMP_Text textoTitulo;
+    public Image imagemQuizz;
+    public TMP_Text textoPergunta;
+    public TMP_Text[] textoResposta;
+
     [Header("Objeto de Musica")]
     public AudioSource caixaDeMusica;
     public AudioSource caixaDeEfeitos;
@@ -21,16 +28,7 @@ public class quizzManager : MonoBehaviour
     public AudioClip efeitoAcerto;
     public AudioClip efeitoErrado;
 
-
-    [Header("Variaveis de Painel")]
-    public GameObject painelInicio;
-    public GameObject painelJogo;
-    [Header("Objetos do Jogo")]
-    public TMP_Text textoTitulo;
-    public Image imagemQuizz;
-    public TMP_Text textoPergunta;
-    public TMP_Text[] textoResposta;
-    [Header("Conteúdo das Perguntas")]
+    [Header("Conteúdo das perguntas")]
     public string[] titulos;
     public Sprite[] imagens;
     public string[] perguntas;
@@ -40,6 +38,7 @@ public class quizzManager : MonoBehaviour
     public string[] alternativa4;
     public int[] alternativaCorreta;
     public int perguntaAtual;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +47,8 @@ public class quizzManager : MonoBehaviour
         caixaDeMusica.clip = musicaMenu;
         caixaDeMusica.Play();
     }
-    // MÉTODO PARA INICIAR UM JOGO
+    
+    //Método para iniciar o jogo
     public void IniciarJogo()
     {
         painelInicio.SetActive(false);
@@ -56,10 +56,10 @@ public class quizzManager : MonoBehaviour
         ProximaPergunta(perguntaAtual);
         caixaDeMusica.clip = musicaJogo;
         caixaDeMusica.Play();
-
     }
-    // MÉTODO PARA FAZER AS PERGUNTAS
-    public void ProximaPergunta(int numero) 
+
+    //Método para fazer as perguntas
+    public void ProximaPergunta(int numero)
     {
         textoTitulo.text = titulos[numero];
         imagemQuizz.sprite = imagens[numero];
@@ -69,11 +69,13 @@ public class quizzManager : MonoBehaviour
         textoResposta[2].text = alternativa3[numero];
         textoResposta[3].text = alternativa4[numero];
     }
-    //METODO PARA CHECAR AS´PERGUNTAS
-    public void ChecarResposta(int numero) 
-    {
-        StartCoroutine(ValidarResposta(numero));
+
+    //Método para checar as perguntas
+    public void ChecarResposta(int numero)
+    {       
+        StartCoroutine(ValidarResposta(numero));     
     }
+
     //Co rotina para mostrar se acertou ou errou
     IEnumerator ValidarResposta(int numero)
     {
@@ -81,13 +83,6 @@ public class quizzManager : MonoBehaviour
         {
             imagemQuizz.color = Color.green;
             caixaDeEfeitos.PlayOneShot(efeitoAcerto);
-
-          //for (int N = 3 & 4 & 5) 
-         // {
-         //     textoResposta[N].GetComponentInParent<Button>().interactable = true;
-         //     N++;
-         // }
-
         }
         else
         {
@@ -99,6 +94,7 @@ public class quizzManager : MonoBehaviour
         imagemQuizz.color = Color.white;
 
         perguntaAtual++;
+
         if (perguntaAtual >= titulos.Length)
         {
             painelInicio.SetActive(true);
@@ -112,5 +108,6 @@ public class quizzManager : MonoBehaviour
             ProximaPergunta(perguntaAtual);
         }
     }
+
 
 }
